@@ -17,8 +17,12 @@
 3.数据预处理  
 > To be filled
 #### 数据挖掘&展示
+1.K-means
 > To be filled
 #### 食物推荐
+1.K-means:将人群按食物喜好聚类为几类人群.
 > To be filled
 #### 生产量预测
+1.LSTM(长短期记忆网络)
+2.Attention(注意力机制)
 > To be filled
