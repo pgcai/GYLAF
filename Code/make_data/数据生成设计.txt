@@ -1,0 +1,19 @@
+1.按人生成：id 100001-105000（5000人
+2.性别：男女4.8：5.2
+3.分布：外地本地0.92：0.08
+4.身高体重：根据平均值正态分布
+5.
+
+根据身高随体重
+for i in range(1,20):
+	x = np.random.normal(loc = 170,scale = 7,size = None)
+	y = np.random.normal(loc = (int(x)-80)*0.7,scale = 5,size = None)
+	print("{}号，身高为{},体重为{}".format(i,int(x),int(y)))
+
+按概率选择性别 地区
+ for i in range(1,20):
+	if np.random.random_sample()<0.65:
+		x = 'nan'
+	else:
+		x = 'nv'
+	print(x)
