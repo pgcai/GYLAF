@@ -24,56 +24,51 @@ def oneDay(date, people, food):
     i = 0
     while i < (len(people[0])):  # allPeople
         if skip(date[2], people[8][i]):  # 根据日期选择是否不在餐厅
+            # print("跳过这个人") # test
+            i += 1
             continue
         onepeopleData = onePeople(date, people[:, i], food)
         oneDayDate.append(onepeopleData)
-        i += 1
         if np.random.random_sample() < 0.8:  # 0.8概率再打二份菜
-            onepeopleData = onePeople(date, people[:, i-1], food)
+            onepeopleData = onePeople(date, people[:, i], food)
             oneDayDate.append(onepeopleData)
         if np.random.random_sample() < 0.1:  # 0.1概率再打三份菜
-            onepeopleData = onePeople(date, people[:, i-1], food)
+            onepeopleData = onePeople(date, people[:, i], food)
             oneDayDate.append(onepeopleData)
+        i += 1
     return oneDayDate
 
 
 def skip(date, region):
-    if date == '0':
+    # print(date)  # test
+    if date == 0:
         # print('双休')
-        if region == '天津':
-            if np.random.random_sample() < 0.20:  # 天津 0.2概率不在餐厅吃
+        if region == '天津市':
+            # print('天津市')  # test
+            if np.random.random_sample() < 0.50:  # 天津 0.2概率不在餐厅吃
+                # print('跳过')  # test
                 return True
             else:
                 return False
         else:
-            if np.random.random_sample() < 0.03:  # 外地 0.03概率不在餐厅吃
+            if np.random.random_sample() < 0.08:  # 外地 0.03概率不在餐厅吃
                 return True
             else:
                 return False
-    elif date == '1':
+    elif date == 1:
         # print('工作日')
         if region == '天津':
-            if np.random.random_sample() < 0.05:  # 天津 0.05概率不在餐厅吃
+            if np.random.random_sample() < 0.08:  # 天津 0.05概率不在餐厅吃
                 return True
             else:
                 return False
         else:
-            if np.random.random_sample() < 0.01:  # 外地 0.01概率不在餐厅吃
+            if np.random.random_sample() < 0.05:  # 外地 0.01概率不在餐厅吃
                 return True
             else:
                 return False
-    elif date == '3':
-        if region == '天津':
-            if np.random.random_sample() < 0.25:  # 天津 0.2概率不在餐厅吃
-                return True
-            else:
-                return False
-        else:
-            if np.random.random_sample() < 0.05:  # 外地 0.03概率不在餐厅吃
-                return True
-            else:
-                return False
-    else:  # 强节日
+    elif date == 3:
+        # print("??")
         if region == '天津':
             if np.random.random_sample() < 0.30:  # 天津 0.2概率不在餐厅吃
                 return True
@@ -81,6 +76,17 @@ def skip(date, region):
                 return False
         else:
             if np.random.random_sample() < 0.10:  # 外地 0.03概率不在餐厅吃
+                return True
+            else:
+                return False
+    else:  # 强节日
+        if region == '天津':
+            if np.random.random_sample() < 0.70:  # 天津 0.2概率不在餐厅吃
+                return True
+            else:
+                return False
+        else:
+            if np.random.random_sample() < 0.30:  # 外地 0.03概率不在餐厅吃
                 return True
             else:
                 return False
@@ -277,7 +283,7 @@ def saveDataxls(alldata):
 
 
 def saveDatacsv(alldata):
-    with open('F:/Github/ZhiQuLeShi/dataset/交易记录.csv', 'w') as f:  # 采用二进制的方式处理可以省去很多问题
+    with open('F:/Github/ZhiQuLeShi/dataset/交易记录.csv', 'w', newline='') as f:  # 采用二进制的方式处理可以省去很多问题
         # 实例化csv.writer对象
         writer = csv.writer(f)
         # 用writerows方法将数据以指定形式保存
