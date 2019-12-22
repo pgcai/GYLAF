@@ -33,6 +33,7 @@
 挖掘模型的质量不会超过抽取样本的质量。数据探索和预处理的目的是为了保证样本数据的质量，从而为保证模型质量打下基础。  
 <img src="https://github.com/CPG123456/ZhiQuLeShi/blob/master/image/Demo0.png" width = 90% div align=center />  
 <img src="https://raw.githubusercontent.com/CPG123456/ZhiQuLeShi/master/image/Demo1.png" width = 90% div align=center />  
+
 #### 4. 数据预处理
 由于采样数据中常常包含许多含有噪声、不完整、甚至不一致的数据，对数据挖掘所设计的数据对象必须进行预处理。  
 数据预处理主要包括：数据筛选、数据变量转换、缺失值处理、坏数据处理、数据标准化、主成分分析、属性选择、数据规约等。
