@@ -1,3 +1,5 @@
+<img src="https://raw.githubusercontent.com/CPG123456/ZhiQuLeShi/master/image/logo.png" width = 30% height = 30% div align=center />
+
 # 大学生创新创业项目-天津市级
 ## 项目名称：智取乐食
 ### 项目介绍：
