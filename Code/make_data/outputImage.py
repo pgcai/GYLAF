@@ -2,6 +2,10 @@ import pyecharts.options as opts
 from pyecharts.faker import  Faker
 from pyecharts.charts import Line, Bar
 from pyecharts.globals import ThemeType  # 内置主题
+
+from pyecharts.render import make_snapshot  # 生成图组件 暂不能用
+from snapshot_pyppeteer import snapshot
+from snapshot_selenium import snapshot
 import numpy as np
 import pandas as pd
 
@@ -38,10 +42,11 @@ def bar_datazoom_slider(xData, yData) -> Bar:
         .add_yaxis("芹菜炒肉", list(yData[6]))
         .add_yaxis("蒜苔肉丝", list(yData[7]))
         .set_global_opts(
-            title_opts=opts.TitleOpts(title="Bar-DataZoom（slider-水平）"),
-            datazoom_opts=opts.DataZoomOpts(),
+            title_opts=opts.TitleOpts(title="食物销量"),
+            datazoom_opts=opts.DataZoomOpts()
         )
     )
+    # make_snapshot(snapshot, c.render(), "bar.png")
     return c
 
 
@@ -84,6 +89,7 @@ def main():
     print(yData.shape)
     line_smooth(list(xData), list(yData)).render("mycharts.html")
     bar_datazoom_slider(list(xData), yData).render()
+    # make_snapshot(snapshot, bar_datazoom_slider(list(xData), yData).render(), "bar0.png")
 
 
 if __name__ == '__main__':
