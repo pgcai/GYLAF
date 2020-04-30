@@ -75,7 +75,7 @@ def main():
     # print(date[63:190])  # test
     # print(csv_data.shape)
     # print(csv_data)
-    xData = date[63:190, 0].astype(str)
+    xData = date[63:190, 0].astype(str)  # 日期
     yData = []
 
     for i in range(14):

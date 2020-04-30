@@ -1,0 +1,25 @@
+from keras.models import load_model
+import pandas as pd
+import numpy as np
+import csv
+
+
+def saveDatacsv(data, path):
+    with open(path, 'w', newline='') as f:  # 采用二进制的方式处理可以省去很多问题
+        # 实例化csv.writer对象
+        writer = csv.writer(f)
+        # 用writerows方法将数据以指定形式保存
+        writer.writerows(data)
+
+
+def main():
+    date = pd.read_excel('E:/Text folder/智取乐食开发/dataset/date.xlsx')
+    date = np.array(date)[:, 1:3].reshape(365, 1, 2)
+    print(date.shape)
+    model = load_model('F:/Github/ZhiQuLeShi/model/model14.hdf5')
+    y = model.predict(date)
+    saveDatacsv(y, 'F:/Github/ZhiQuLeShi/dataset/model_f.csv')
+
+
+if __name__ == '__main__':
+    main()

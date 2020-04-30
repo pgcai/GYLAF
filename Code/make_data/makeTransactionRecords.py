@@ -1,10 +1,12 @@
 import pickle
 import numpy as np
+np.set_printoptions(suppress=True)
 import random
 import xlrd
 import xlwt
 import math
 import csv
+import pandas as pd
 
 
 def allDay(date, people, food):
@@ -289,15 +291,22 @@ def saveDatacsv(alldata):
         # 用writerows方法将数据以指定形式保存
         writer.writerows(alldata)
 
+
+def load_data(path):
+    print('---------------------数据读取-------------------')
+    data = pd.read_csv(path)
+    return np.array(data)
+
+
 def main():
     print('------------------智取乐食交易记录生成----------------')
 
     print('--------------------一、读取需要数据------------------')
-    people = readPeopleList('E:/Text folder/智取乐食开发/用户属性new.xls')
+    people = readPeopleList('F:/Github/ZhiQuLeShi/dataset/用户属性new.xls')
     # people[[学号], [身高], [体重], [口味1], [口味2], [忌口], [喜爱类型1], [喜爱类型2], [地区]]
     # print(people)
 
-    foodold = readFoodList('E:/Text folder/智取乐食开发/dataset/data.xlsx')
+    foodold = readFoodList('F:/Github/ZhiQuLeShi/dataset/data.xlsx')
     # food[[餐品id],[餐品口味],[餐品忌口],[餐品类型1],[餐品类型2],[价格],[备注]]
     # foodreshape
     food = []
@@ -305,11 +314,13 @@ def main():
         food.append(foodold[:, i])
     food = np.array(food)  # 将List转换为Array便于处理
 
-    date = readDateList('E:/Text folder/智取乐食开发/dataset/date.xlsx')
-    # date[[日期],[星期],[是否工作日]]
+    date = load_data('F:/Github/ZhiQuLeShi/dataset/lstm_data2.csv')
+    # date[[日期],[星期],[是否工作日],[最高温度],[最低温度],[天气],[风力],[空气质量指数]]
     # print(date)
     print('数据读取完成')
-
+    print(date.shape)
+    print(date[:2])
+    return
     print('--------------------二、生成交易数据------------------')
     TsData = allDay(date[:, 63:190], people, food)
     # print(TsData)  # 测试
